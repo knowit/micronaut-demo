@@ -1,0 +1,3 @@
+[submodule "micronaut-swagger-server"]
+	path = micronaut-swagger-server
+	url = https://github.com/frehov/micronaut-swagger-server
