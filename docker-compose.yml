@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  micronaut:
+    build:
+      context: micronaut-demo/
+      dockerfile: Dockerfile
+    ports:
+    - 7000:8080
+
+  spring:
+    build:
+      context: springboot-demo/
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8080
+
+  dropwizard:
+    build:
+      context: dropwizard-demo/
+      dockerfile: Dockerfile
+    ports:
+      - 9000:8080
+
+  db:
+    build:
+      context: database/
+      dockerfile: Dockerfile
+    ports:
+    - 6000:5432
