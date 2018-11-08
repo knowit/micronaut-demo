@@ -7,3 +7,6 @@
 [submodule "micronaut-demo"]
 	path = micronaut-demo
 	url = https://github.com/frehov/micronaut-demo
+[submodule "dropwizard-demo"]
+	path = dropwizard-demo
+	url = https://github.com/frehov/dropwizard-demo
