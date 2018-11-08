@@ -4,3 +4,6 @@
 [submodule "springboot-demo"]
 	path = springboot-demo
 	url = https://github.com/frehov/springboot-demo
+[submodule "micronaut-demo"]
+	path = micronaut-demo
+	url = https://github.com/frehov/micronaut-demo
