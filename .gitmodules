@@ -1,3 +1,6 @@
 [submodule "micronaut-swagger-server"]
 	path = micronaut-swagger-server
 	url = https://github.com/frehov/micronaut-swagger-server
+[submodule "springboot-demo"]
+	path = springboot-demo
+	url = https://github.com/frehov/springboot-demo
