@@ -1,12 +1,12 @@
 [submodule "micronaut-swagger-server"]
 	path = micronaut-swagger-server
-	url = https://github.com/frehov/micronaut-swagger-server
+	url = git@github.com:frehov/micronaut-swagger-server
 [submodule "springboot-demo"]
 	path = springboot-demo
-	url = https://github.com/frehov/springboot-demo
+	url = git@github.com:frehov/springboot-demo
 [submodule "micronaut-demo"]
 	path = micronaut-demo
-	url = https://github.com/frehov/micronaut-demo
+	url = git@github.com:frehov/micronaut-demo
 [submodule "dropwizard-demo"]
 	path = dropwizard-demo
-	url = https://github.com/frehov/dropwizard-demo
+	url = git@github.com:frehov/dropwizard-demo
