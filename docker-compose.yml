@@ -2,16 +2,15 @@ version: "3"
 
 services:
   micronaut:
-    build:
-      context: micronaut-demo/
-      dockerfile: Dockerfile
+    image: com.crappyengineering.micronaut/micronaut-demo
+#    build:
+#      context: micronaut-demo/
+#      dockerfile: Dockerfile
     ports:
     - 7000:8080
 
   spring:
-    build:
-      context: springboot-demo/
-      dockerfile: Dockerfile
+    image: com.crappyengineering.springboot/springboot-demo
     ports:
       - 8000:8080
 
@@ -28,3 +27,8 @@ services:
       dockerfile: Dockerfile
     ports:
     - 6000:5432
+
+  swagger:
+    image: com.crappyengineering.micronaut/swagger-server
+    ports:
+      - 7100:8080
