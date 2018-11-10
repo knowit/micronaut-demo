@@ -3,9 +3,6 @@ version: "3"
 services:
   micronaut:
     image: com.crappyengineering.micronaut/micronaut-demo
-#    build:
-#      context: micronaut-demo/
-#      dockerfile: Dockerfile
     ports:
     - 7000:8080
 
@@ -15,9 +12,7 @@ services:
       - 8000:8080
 
   dropwizard:
-    build:
-      context: dropwizard-demo/
-      dockerfile: Dockerfile
+    image: com.crappyengineering.dropwizard/dropwizard-demo
     ports:
       - 9000:8080
 
