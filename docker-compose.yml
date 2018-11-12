@@ -2,16 +2,22 @@ version: "3"
 
 services:
   micronaut:
+    depends_on:
+      - db
     image: com.crappyengineering.micronaut/micronaut-demo
     ports:
     - 7000:8080
 
   spring:
+    depends_on:
+    - db
     image: com.crappyengineering.springboot/springboot-demo
     ports:
       - 8000:8080
 
   dropwizard:
+    depends_on:
+    - db
     image: com.crappyengineering.dropwizard/dropwizard-demo
     ports:
       - 9000:8080
