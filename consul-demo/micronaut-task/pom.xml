@@ -160,6 +160,10 @@
                     <from>
                         <image>openjdk:8u171-alpine3.7</image>
                     </from>
+                    <container>
+                        <useCurrentTimestamp>true</useCurrentTimestamp>
+                        <mainClass>${exec.mainClass}</mainClass>
+                    </container>
                 </configuration>
                 <executions>
                     <execution>
