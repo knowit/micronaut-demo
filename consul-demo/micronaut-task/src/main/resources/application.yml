@@ -1,0 +1,41 @@
+---
+micronaut:
+    application:
+        name: micronaut-task
+
+---
+datasources.default: {}
+---
+datasources:
+  default:
+    url: jdbc:postgresql://${DB_SERVER:db}:${DB_PORT:5432}/jvm-chapter
+    driverClassName: org.postgresql.Driver
+    username: jvm-chapter
+    password: jvm-chapter
+jpa:
+  default:
+    packages-to-scan:
+    - 'no.knowit.jvm.chapter.model'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+        generate_statistics: true
+        show_sql: true
+        format_sql: true
+---
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimeStamp: false
+  deserialization:
+    useBigIntegerForInts: true
+    failOnUnknownProperties: false
+  serialization-inclusion: NON_EMPTY
+
+---
+consul:
+  client:
+    registration:
+      enabled: false
+    defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
