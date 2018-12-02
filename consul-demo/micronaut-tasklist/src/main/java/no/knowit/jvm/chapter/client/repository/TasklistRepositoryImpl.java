@@ -1,5 +1,6 @@
 package no.knowit.jvm.chapter.client.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Singleton;
@@ -16,8 +17,38 @@ public class TasklistRepositoryImpl implements TasklistRepository {
     EntityManager entityManager;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<Tasklist> findById(long id) {
         return Optional.ofNullable(entityManager.find(Tasklist.class, id));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<List<Tasklist>> findAll() {
+        return Optional.of(entityManager.createQuery("SELECT t from Tasklist t", Tasklist.class).getResultList());
+    }
+
+    @Override
+    @Transactional
+    public Tasklist save(Tasklist tasklist) {
+        entityManager.persist(tasklist);
+        return tasklist;
+    }
+
+    @Override
+    @Transactional
+    public int update(long id, Tasklist tasklist) {
+        return entityManager.createQuery("UPDATE Tasklist set title = :title, owner = :owner")
+                .setParameter("title", tasklist.getTitle())
+                .setParameter("owner", tasklist.getOwner())
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public int delete(long id) {
+        return entityManager.createQuery("DELETE FROM Tasklist where id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
 }

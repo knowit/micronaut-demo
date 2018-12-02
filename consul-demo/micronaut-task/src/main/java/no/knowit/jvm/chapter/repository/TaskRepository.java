@@ -16,4 +16,7 @@ public interface TaskRepository {
     int update(long id, Task task);
 
     int delete(long id);
+
+    int deleteByParentId(long id);
+
 }

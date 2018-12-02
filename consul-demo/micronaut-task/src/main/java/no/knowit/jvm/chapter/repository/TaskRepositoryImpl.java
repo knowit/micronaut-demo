@@ -18,15 +18,15 @@ public class TaskRepositoryImpl implements TaskRepository {
     EntityManager entityManager;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<List<Task>> findByParentId(@NotNull long id) {
-        return Optional.of(entityManager.createQuery("select t from Task t where t.parent = :id", Task.class)
+        return Optional.of(entityManager.createQuery("SELECT t FROM Task t WHERE t.parent = :id", Task.class)
                 .setParameter("id", id)
                 .getResultList());
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<Task> findById(long id) {
         return Optional.of(entityManager.find(Task.class, id));
     }
@@ -41,7 +41,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     @Transactional
     public int update(long id, Task task) {
-        return entityManager.createQuery("UPDATE Task SET status = :status, description = :description, parent = :parent where id = :id")
+        return entityManager.createQuery("UPDATE Task SET status = :status, description = :description, parent = :parent WHERE id = :id")
                 .setParameter("status", task.getStatus())
                 .setParameter("description", task.getDescription())
                 .setParameter("parent", task.getParent())
@@ -51,7 +51,15 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     @Transactional
     public int delete(long id) {
-        return entityManager.createQuery("DELETE from Task where id = :id")
+        return entityManager.createQuery("DELETE FROM Task WHERE id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public int deleteByParentId(long id) {
+        return entityManager.createQuery("DELETE FROM Task WHERE parent = :id")
                 .setParameter("id", id)
                 .executeUpdate();
     }

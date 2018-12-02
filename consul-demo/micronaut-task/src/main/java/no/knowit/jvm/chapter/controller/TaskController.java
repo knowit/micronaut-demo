@@ -46,6 +46,11 @@ public class TaskController {
                 .orElseGet(HttpResponse::badRequest);
     }
 
+    @Delete
+    public HttpStatus deleteTasksByParentId(@QueryValue("parent") @NotNull long parentId) {
+        return taskRepository.deleteByParentId(parentId) >= 0 ? OK : NOT_FOUND;
+    }
+
     @Get("/{id}")
     public Task getTaskById(long id) {
         return taskRepository.findById(id).orElse(null);

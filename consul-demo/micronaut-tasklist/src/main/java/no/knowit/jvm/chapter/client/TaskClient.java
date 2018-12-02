@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.QueryValue;
 import io.micronaut.http.client.annotation.Client;
@@ -16,4 +18,7 @@ public interface TaskClient extends TaskOperations {
 
     @Get("/api/task")
     Maybe<List<Task>> getTasksByParentId(@QueryValue("parent") @NotNull long id);
+
+    @Delete("/api/task")
+    Maybe<HttpStatus> deleteTasksByParentId(@QueryValue("parent") @NotNull long id);
 }
