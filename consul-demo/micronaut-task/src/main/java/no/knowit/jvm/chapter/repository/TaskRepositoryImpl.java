@@ -19,9 +19,40 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     @Transactional
-    public List<Task> getTaskByParentId(@NotNull long id) {
-        return entityManager.createQuery("select t from Task t where t.id = :id", Task.class)
+    public Optional<List<Task>> findByParentId(@NotNull long id) {
+        return Optional.of(entityManager.createQuery("select t from Task t where t.parent = :id", Task.class)
                 .setParameter("id", id)
-                .getResultList();
+                .getResultList());
+    }
+
+    @Override
+    @Transactional
+    public Optional<Task> findById(long id) {
+        return Optional.of(entityManager.find(Task.class, id));
+    }
+
+    @Override
+    @Transactional
+    public Task save(Task task) {
+        entityManager.persist(task);
+        return task;
+    }
+
+    @Override
+    @Transactional
+    public int update(long id, Task task) {
+        return entityManager.createQuery("UPDATE Task SET status = :status, description = :description, parent = :parent where id = :id")
+                .setParameter("status", task.getStatus())
+                .setParameter("description", task.getDescription())
+                .setParameter("parent", task.getParent())
+                .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public int delete(long id) {
+        return entityManager.createQuery("DELETE from Task where id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
 }
