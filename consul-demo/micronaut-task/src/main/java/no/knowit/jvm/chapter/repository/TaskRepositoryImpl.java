@@ -27,6 +27,12 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     @Transactional(readOnly = true)
+    public Optional<List<Task>> findAll() {
+        return Optional.of(entityManager.createQuery("SELECT t FROM Task t", Task.class).getResultList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Optional<Task> findById(long id) {
         return Optional.of(entityManager.find(Task.class, id));
     }
@@ -63,4 +69,6 @@ public class TaskRepositoryImpl implements TaskRepository {
                 .setParameter("id", id)
                 .executeUpdate();
     }
+
+
 }

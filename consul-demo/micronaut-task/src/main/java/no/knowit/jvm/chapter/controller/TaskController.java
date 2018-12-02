@@ -35,8 +35,16 @@ public class TaskController {
         return taskRepository.findByParentId(parentId)
                 .filter(tasks -> !tasks.isEmpty())
                 .map(HttpResponse::ok)
-                .orElseGet(HttpResponse::noContent);
+                .orElseGet(HttpResponse::badRequest);
         //return Collections.singletonList(new Task(parentId, "test", TaskStatus.NOT_STARTED));
+    }
+
+    @Get
+    public HttpResponse getAllTasks() {
+        return taskRepository.findAll()
+                .filter(tasks -> !tasks.isEmpty())
+                .map(HttpResponse::ok)
+                .orElseGet(HttpResponse::badRequest);
     }
 
     @Post

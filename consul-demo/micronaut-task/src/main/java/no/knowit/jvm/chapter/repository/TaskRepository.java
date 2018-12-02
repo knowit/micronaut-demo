@@ -19,4 +19,5 @@ public interface TaskRepository {
 
     int deleteByParentId(long id);
 
+    Optional<List<Task>> findAll();
 }
