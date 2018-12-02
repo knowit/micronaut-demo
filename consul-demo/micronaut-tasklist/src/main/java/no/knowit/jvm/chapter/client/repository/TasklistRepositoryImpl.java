@@ -38,9 +38,10 @@ public class TasklistRepositoryImpl implements TasklistRepository {
     @Override
     @Transactional
     public int update(long id, Tasklist tasklist) {
-        return entityManager.createQuery("UPDATE Tasklist set title = :title, owner = :owner")
+        return entityManager.createQuery("UPDATE Tasklist SET title = :title, owner = :owner WHERE id = :id")
                 .setParameter("title", tasklist.getTitle())
                 .setParameter("owner", tasklist.getOwner())
+                .setParameter("id", id)
                 .executeUpdate();
     }
 
